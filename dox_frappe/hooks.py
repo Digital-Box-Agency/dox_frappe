@@ -94,21 +94,20 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Workflow": "dox_frappe.core_overrides.workflow.CustomWorkflow"
+}
 
 # Document Events
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"*": {
+		"validate": "dox_frappe.utils.utils.update_tracing_table",
+        "on_cancel":  "dox_frappe.utils.utils.update_tracing_table",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
